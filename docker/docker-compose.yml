@@ -1,0 +1,87 @@
+version: '3'
+services:
+
+  # データベース
+  mysql:
+    build: ./mysql
+    container_name: '${COMPOSE_PROJECT_NAME}-mysql'
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${COMPOSE_PROJECT_NAME}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      BIND-ADDRESS: "0.0.0.0"
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf_d:/etc/mysql/conf.d"
+      - "./mysql/mysql_init:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+    networks:
+      - my-classic
+
+  # memcached
+  memcached:
+    build: ./memcached
+    container_name: '${COMPOSE_PROJECT_NAME}-memcached'
+    tty: true
+    environment:
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "11211:11211"
+    networks:
+      - my-classic
+
+# Laravel
+  php:
+    build: ./php
+    container_name: '${COMPOSE_PROJECT_NAME}-php'
+    tty: true
+    volumes:
+      - "../src/laravel:/opt/src"
+    environment:
+      DB_DATABASE: "${COMPOSE_PROJECT_NAME}"
+      DB_USERNAME: "${MYSQL_USER}"
+      DB_PASSWORD: "${MYSQL_PASSWORD}"
+      TZ: "Asia/Tokyo"
+    depends_on:
+      - mysql
+      - memcached
+    networks:
+      - my-classic
+
+# vue.js
+  vuejs:
+    build: ./vuejs
+    container_name: '${COMPOSE_PROJECT_NAME}-vuejs'
+    tty: true
+    environment:
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - "../src/vuejs:/opt/src"
+    networks:
+      - my-classic
+
+
+  # Webサーバー
+  nginx:
+    build: ./nginx
+    container_name: '${COMPOSE_PROJECT_NAME}-nginx'
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - "./nginx/conf_d:/etc/nginx/conf.d"
+      - "./nginx/static:/var/www/static"
+      - "../src/vuejs:/opt/src/vuejs"
+    environment:
+      TZ: "Asia/Tokyo"
+    depends_on:
+      - php
+    networks:
+      - my-classic
+
+networks:
+  my-classic:
