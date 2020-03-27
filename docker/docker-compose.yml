@@ -20,7 +20,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - my-classic
+      - myclassic
 
   # memcached
   memcached:
@@ -32,7 +32,7 @@ services:
     ports:
       - "11211:11211"
     networks:
-      - my-classic
+      - myclassic
 
 # Laravel
   php:
@@ -50,7 +50,7 @@ services:
       - mysql
       - memcached
     networks:
-      - my-classic
+      - myclassic
 
 # vue.js
   vuejs:
@@ -62,7 +62,7 @@ services:
     volumes:
       - "../src/vuejs:/opt/src"
     networks:
-      - my-classic
+      - myclassic
 
 
   # Webサーバー
@@ -81,7 +81,7 @@ services:
     depends_on:
       - php
     networks:
-      - my-classic
+      - myclassic
 
 networks:
-  my-classic:
+  myclassic:
