@@ -19,9 +19,9 @@ class DatabaseProductsSeeder extends Seeder
             'product_code' => 'K.551',
             'recorded_year' => 1788,
             'description' => '交響曲第41番 ハ長調 K. 551 は、ヴォルフガング・アマデウス・モーツァルトが作曲した最後の交響曲である。',
-            'period_id' => null,
+            'period_id' => 4,
             'composer_id' => 1,
-            'form_id' => null,
+            'form_id' => 2,
         ];
         DB::table('products')->insert($param);
     }
