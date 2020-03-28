@@ -26,3 +26,6 @@ Route::get('/period', "Api\PeriodController@index");
 
 // 作曲家
 Route::get('/composer', "Api\ComposerController@index");
+
+// 楽式
+Route::get('/form', "Api\FormController@index");
