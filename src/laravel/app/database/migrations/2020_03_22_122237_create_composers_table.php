@@ -19,13 +19,14 @@ class CreateComposersTable extends Migration
             $table->string('name');
             $table->string('name_jp')->comment('日本名')->nullable();
             $table->string('name_origin')->comment('現地名')->nullable();
-            $table->increments('birth_year')->nullable();
-            $table->increments('death_year')->nullable();
+            $table->integer('birth_year')->nullable();
+            $table->integer('death_year')->nullable();
             $table->string('icon_url')->nullable();
             $table->string('home_city')->comment('出身地')->nullable();
             $table->string('description')->nullable();
-            $table->increments('country_id')->nullable();
-            $table->timestamps();
+            $table->integer('country_id')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
