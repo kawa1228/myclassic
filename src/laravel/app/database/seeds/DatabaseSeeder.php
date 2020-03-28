@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(DatabaseComposersSeeder::class);
         $this->call(DatabaseProductsSeeder::class);
+        $this->call(DatabasePeriodsSeeder::class);
     }
 }
