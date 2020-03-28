@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: https://ondras.zarovi.cz/sql/demo/?keyword=default -->
+<sql>
+<datatypes db="mysql">
+                <group label="Numeric" color="rgb(238,238,170)">
+                               <type label="Integer" length="0" sql="INTEGER" re="INT" quote=""/>
+                               <type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+                               <type label="Single precision" length="0" sql="FLOAT" quote=""/>
+                               <type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+                </group>
+
+                <group label="Character" color="rgb(255,200,200)">
+                               <type label="Char" length="1" sql="CHAR" quote="'"/>
+                               <type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+                               <type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+                               <type label="Binary" length="1" sql="BINARY" quote="'"/>
+                               <type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+                               <type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+                </group>
+
+                <group label="Date &amp; Time" color="rgb(200,255,200)">
+                               <type label="Date" length="0" sql="DATE" quote="'"/>
+                               <type label="Time" length="0" sql="TIME" quote="'"/>
+                               <type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+                               <type label="Year" length="0" sql="YEAR" quote=""/>
+                               <type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+                </group>
+
+                <group label="Miscellaneous" color="rgb(200,200,255)">
+                               <type label="ENUM" length="1" sql="ENUM" quote=""/>
+                               <type label="SET" length="1" sql="SET" quote=""/>
+                               <type label="Bit" length="0" sql="bit" quote=""/>
+                </group>
+</datatypes><table x="400" y="191" name="products">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="name_origin" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="nick_name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="catalogue" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default><comment>主題目録</comment>
+</row>
+<row name="recorded_year" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><comment>収録時期</comment>
+</row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="period_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><comment>時代id</comment>
+</row>
+<row name="composer_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="composers" row="id" />
+<comment>作曲家id</comment>
+</row>
+<row name="form_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="forms" row="id" />
+<comment>楽式id</comment>
+</row>
+<row name="genre_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="genres" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>作品</comment>
+</table>
+<table x="401" y="660" name="periods">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="begin_min" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="begin_max" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="end_min" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="end_max" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>時代</comment>
+</table>
+<table x="137" y="346" name="composers">
+<row name="id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default><comment>作曲家名</comment>
+</row>
+<row name="name_jp" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default><comment>作曲家名_日本語</comment>
+</row>
+<row name="name_origin" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default><comment>作曲家名_現地語</comment>
+</row>
+<row name="birth_year" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="death_year" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="icon_url" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="home_city" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default><comment>活躍した都市</comment>
+</row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="country_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="countries" row="id" />
+</row>
+<row name="period_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="periods" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>作曲家</comment>
+</table>
+<table x="650" y="288" name="forms">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="name_origin" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>楽式</comment>
+</table>
+<table x="653" y="464" name="genres">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>ジャンル</comment>
+</table>
+<table x="400" y="513" name="countries">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="iso_code" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>国</comment>
+</table>
+</sql>
