@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// 作品
+Route::get('/product', "Api\ProductController@index");
+
+// 作曲家
 Route::get('/composer', "Api\ComposerController@index");
