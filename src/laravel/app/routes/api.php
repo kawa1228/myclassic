@@ -21,5 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // 作品
 Route::get('/product', "Api\ProductController@index");
 
+// 時代
+Route::get('/period', "Api\PeriodController@index");
+
 // 作曲家
 Route::get('/composer', "Api\ComposerController@index");
