@@ -16,13 +16,11 @@ class CreateComposersTable extends Migration
     {
         Schema::create('composers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('name_jp')->comment('日本名')->nullable();
+            $table->string('name')->comment('日本名')->nullable();
             $table->string('name_origin')->comment('現地名')->nullable();
-            $table->date('birth_at')->nullable();
-            $table->date('death_at')->nullable();
+            $table->integer('birth_at')->nullable();
+            $table->integer('death_at')->nullable();
             $table->string('icon_url')->nullable();
-            $table->string('home_city')->comment('出身地')->nullable();
             $table->string('description')->nullable();
             $table->integer('country_id')->nullable();
             $table->integer('period_id')->nullable();
